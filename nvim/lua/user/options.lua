@@ -1,7 +1,7 @@
 local options = {
   undofile = true,                  -- enable persistent undo
   pastetoggle = "<F4>",             -- Use F4 to toggle paste mode
-  mouse = "",                       -- disable mouse
+  mouse = "a",                      -- enable mouse
   expandtab = true,                 -- convert tabs to spaces
   shiftwidth = 4,                   -- the number of spaces inserted for each indentation
   tabstop = 4,                      -- insert 4 spaces for a tab
