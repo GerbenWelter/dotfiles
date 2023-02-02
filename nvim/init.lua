@@ -9,4 +9,5 @@ require 'user.telescope'
 require 'user.nvim-tree'
 require 'user.treesitter'
 require 'user.autocommands'
+require 'user.debug'
 

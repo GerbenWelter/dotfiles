@@ -45,6 +45,12 @@ return require('packer').startup(function(use)
   	-- Snippets
     use 'L3MON4D3/LuaSnip' --snippet engine
 
+    -- Debugging
+    use 'mfussenegger/nvim-dap'
+    use 'rcarriga/nvim-dap-ui'
+    use 'theHamsta/nvim-dap-virtual-text'
+    use 'leoluz/nvim-dap-go'
+
     -- plugins
     use {
         'nvim-telescope/telescope.nvim',
