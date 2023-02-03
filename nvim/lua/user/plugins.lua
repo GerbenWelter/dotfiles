@@ -76,6 +76,7 @@ return require('packer').startup(function(use)
         run = ':TSUpdate',
     })
     use 'tpope/vim-endwise'
+    use 'tpope/vim-surround'
     use 'Raimondi/delimitMate'
     use 'editorconfig/editorconfig-vim'
     use 'pearofducks/ansible-vim'
