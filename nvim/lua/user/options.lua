@@ -8,6 +8,7 @@ local options = {
   number = true,                    -- set numbered lines
   relativenumber = false,           -- set relative numbered lines
   termguicolors = true,             -- set term gui colors (most terminals support this)
+  splitright = true                 -- open vertical splits to the right
 }
 
 for k, v in pairs(options) do
