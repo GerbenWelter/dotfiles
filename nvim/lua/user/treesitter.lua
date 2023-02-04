@@ -11,6 +11,7 @@ configs.setup({
     "json",
     "lua",
     "python",
+    "rust",
     "yaml",
     "markdown",
     "markdown_inline"
