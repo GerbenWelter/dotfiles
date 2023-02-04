@@ -1,4 +1,4 @@
-vim.cmd [[
+vim.cmd([[
   augroup _yaml
       autocmd!
       autocmd BufEnter,BufWinEnter *.yaml set filetype=yaml.ansible ts=2 sts=2 sw=2 expandtab indentexpr=GetAnsibleIndent()
@@ -14,4 +14,4 @@ vim.cmd [[
       au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
   augroup END
 
-]]
+]])
