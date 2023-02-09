@@ -59,6 +59,15 @@ require("packer").startup(function(use)
     tag = "v3.*",
     requires = "nvim-tree/nvim-web-devicons",
   })
+  use({
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    },
+  })
   use("nvim-lualine/lualine.nvim") -- Fancier statusline
   use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
   use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
@@ -178,6 +187,7 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set("n", "<F24>", ":PackerSync<CR>", { silent = true })
+vim.keymap.set("n", "<c-n>", ":NeoTreeFocusToggle<CR>", { silent = true })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -468,8 +478,8 @@ cmp.setup({
 
 local status, bufferline = pcall(require, "bufferline")
 if not status then
-	print("ERROR bufferline")
-	return
+  print("ERROR bufferline")
+  return
 end
 
 bufferline.setup({
