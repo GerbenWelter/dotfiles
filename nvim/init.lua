@@ -86,6 +86,7 @@ require("packer").startup(function(use)
     sources = {
       null_ls.builtins.formatting.prettier,
       null_ls.builtins.formatting.stylua,
+      null_ls.builtins.formatting.gofmt,
       null_ls.builtins.formatting.rustfmt,
     },
     -- you can reuse a shared lspconfig on_attach callback here
