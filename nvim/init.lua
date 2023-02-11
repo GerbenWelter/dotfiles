@@ -139,6 +139,9 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
+-- Set tabstop = 4
+vim.o.tabstop = 4
+
 -- Set highlight on search
 vim.o.hlsearch = false
 
