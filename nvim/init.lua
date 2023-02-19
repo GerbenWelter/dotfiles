@@ -13,7 +13,7 @@ require("packer").startup(function(use)
     use("WhoIsSethDaniel/mason-tool-installer.nvim")
 
     use({
-    -- LSP Configuration & Plugins
+        -- LSP Configuration & Plugins
         "neovim/nvim-lspconfig",
         requires = {
             -- Automatically install LSPs to stdpath for neovim
@@ -29,13 +29,13 @@ require("packer").startup(function(use)
     })
 
     use({
-    -- Autocompletion
+        -- Autocompletion
         "hrsh7th/nvim-cmp",
         requires = { "hrsh7th/cmp-nvim-lsp", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip" },
     })
 
     use({
-    -- Highlight, edit, and navigate code
+        -- Highlight, edit, and navigate code
         "nvim-treesitter/nvim-treesitter",
         run = function()
             pcall(require("nvim-treesitter.install").update({ with_sync = true }))
@@ -43,7 +43,7 @@ require("packer").startup(function(use)
     })
 
     use({
-    -- Additional text objects via treesitter
+        -- Additional text objects via treesitter
         "nvim-treesitter/nvim-treesitter-textobjects",
         after = "nvim-treesitter",
     })
@@ -60,7 +60,7 @@ require("packer").startup(function(use)
     use("talha-akram/noctis.nvim")
 
     use({
-    -- bufferline at top of screen
+        -- bufferline at top of screen
         "akinsho/bufferline.nvim",
         tag = "v3.*",
         requires = "nvim-tree/nvim-web-devicons",
