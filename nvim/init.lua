@@ -10,8 +10,10 @@ end
 require("packer").startup(function(use)
     -- Package manager
     use("wbthomason/packer.nvim")
+    use("WhoIsSethDaniel/mason-tool-installer.nvim")
 
-    use({ -- LSP Configuration & Plugins
+    use({
+    -- LSP Configuration & Plugins
         "neovim/nvim-lspconfig",
         requires = {
             -- Automatically install LSPs to stdpath for neovim
@@ -26,19 +28,22 @@ require("packer").startup(function(use)
         },
     })
 
-    use({ -- Autocompletion
+    use({
+    -- Autocompletion
         "hrsh7th/nvim-cmp",
         requires = { "hrsh7th/cmp-nvim-lsp", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip" },
     })
 
-    use({ -- Highlight, edit, and navigate code
+    use({
+    -- Highlight, edit, and navigate code
         "nvim-treesitter/nvim-treesitter",
         run = function()
             pcall(require("nvim-treesitter.install").update({ with_sync = true }))
         end,
     })
 
-    use({ -- Additional text objects via treesitter
+    use({
+    -- Additional text objects via treesitter
         "nvim-treesitter/nvim-treesitter-textobjects",
         after = "nvim-treesitter",
     })
@@ -54,7 +59,8 @@ require("packer").startup(function(use)
     use("navarasu/onedark.nvim") -- Theme inspired by Atom
     use("talha-akram/noctis.nvim")
 
-    use({ -- bufferline at top of screen
+    use({
+    -- bufferline at top of screen
         "akinsho/bufferline.nvim",
         tag = "v3.*",
         requires = "nvim-tree/nvim-web-devicons",
@@ -284,7 +290,6 @@ vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { de
 require("nvim-treesitter.configs").setup({
     -- Add languages to be installed here that you want installed for treesitter
     ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "typescript", "help", "vim" },
-
     highlight = { enable = true },
     indent = { enable = true, disable = { "python" } },
     incremental_selection = {
@@ -443,6 +448,12 @@ mason_lspconfig.setup_handlers({
     end,
 })
 
+require("mason-tool-installer").setup({
+    ensure_installed = {
+        "stylua",
+    },
+})
+
 -- Turn on lsp status information
 require("fidget").setup()
 
@@ -457,7 +468,7 @@ cmp.setup({
         end,
     },
     mapping = cmp.mapping.preset.insert({
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-d>"] = cmp.mapping.scroll_docs( -4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete({}),
         ["<CR>"] = cmp.mapping.confirm({
@@ -476,8 +487,8 @@ cmp.setup({
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
+            elseif luasnip.jumpable( -1) then
+                luasnip.jump( -1)
             else
                 fallback()
             end
@@ -532,7 +543,6 @@ bufferline.setup({
         pick_visible = { italic = false },
         pick = { italic = false },
     },
-
     options = {
         indicator = {
             icon = "▎",
