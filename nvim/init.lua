@@ -72,6 +72,7 @@ require("packer").startup(function(use)
     use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
     use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
     use("ntpeters/vim-better-whitespace")
+    use("christoomey/vim-tmux-navigator")
 
     -- Fuzzy Finder (files, lsp, etc)
     use({ "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = { "nvim-lua/plenary.nvim" } })
@@ -103,6 +104,13 @@ require("packer").startup(function(use)
             end
         end,
     })
+
+    --debugging
+    use("mfussenegger/nvim-dap")
+    use("leoluz/nvim-dap-go")
+    use("rcarriga/nvim-dap-ui")
+    use("theHamsta/nvim-dap-virtual-text")
+    use("nvim-telescope/telescope-dap.nvim")
 
     -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
     local has_plugins, plugins = pcall(require, "custom.plugins")
@@ -246,7 +254,7 @@ require("telescope").setup({
             i = {
                 ["<C-u>"] = false,
                 ["<C-d>"] = false,
-},
+            },
         },
     },
 })
@@ -262,7 +270,7 @@ vim.keymap.set("n", "<leader>/", function()
     require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
         winblend = 10,
         previewer = false,
-}))
+    }))
 end, { desc = "[/] Fuzzily search in current buffer]" })
 
 vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
@@ -329,9 +337,9 @@ require("nvim-treesitter.configs").setup({
             },
             swap_previous = {
                 ["<leader>A"] = "@parameter.inner",
-},
-},
-},
+            },
+        },
+    },
 })
 
 -- Diagnostic keymaps
@@ -351,7 +359,7 @@ local on_attach = function(_, bufnr)
     -- for LSP related items. It sets the mode, buffer and description for us each time.
     local nmap = function(keys, func, desc)
         if desc then
-desc = "LSP: " .. desc
+            desc = "LSP: " .. desc
         end
 
         vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
@@ -451,7 +459,7 @@ cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-Space>"] = cmp.mapping.complete({}),
         ["<CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
@@ -459,18 +467,18 @@ cmp.setup({
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-elseif luasnip.expand_or_jumpable() then
+            elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
             else
                 fallback()
             end
         end, { "i", "s" }),
-["<S-Tab>"] = cmp.mapping(function(fallback)
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-cmp.select_prev_item()
+                cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
-luasnip.jump(-1)
-else
+                luasnip.jump(-1)
+            else
                 fallback()
             end
         end, { "i", "s" }),
@@ -480,6 +488,31 @@ else
         { name = "luasnip" },
     },
 })
+
+vim.keymap.set("n", "<F5>", ":lua require'dap'.continue()<CR>")
+vim.keymap.set("n", "<F10>", ":lua require'dap'.step_over()<CR>")
+vim.keymap.set("n", "<F11>", ":lua require'dap'.step_into()<CR>")
+vim.keymap.set("n", "<F23>", ":lua require'dap'.step_out()<CR>")
+vim.keymap.set("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>")
+vim.keymap.set("n", "<leader>B", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
+vim.keymap.set("n", "<leader>lp", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
+vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>")
+vim.keymap.set("n", "<leader>dt", ":lua require'dap-go'.debug_test()<CR>")
+
+require("nvim-dap-virtual-text").setup({})
+require("dap-go").setup()
+require("dapui").setup()
+
+local dap, dapui = require("dap"), require("dapui")
+dap.listeners.after.event_initialized["dapui_config"] = function()
+    dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+    dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+    dapui.close()
+end
 
 local status, bufferline = pcall(require, "bufferline")
 if not status then
@@ -494,7 +527,7 @@ bufferline.setup({
         tab_selected = {},
         buffer_selected = { italic = false },
         diagnostic_selected = { italic = false },
-hint_selected = { italic = false },
+        hint_selected = { italic = false },
         pick_selected = { italic = false },
         pick_visible = { italic = false },
         pick = { italic = false },
@@ -505,7 +538,7 @@ hint_selected = { italic = false },
             icon = "▎",
             style = "icon",
         },
-buffer_close_icon = "",
+        buffer_close_icon = "",
         modified_icon = "●",
         close_icon = "",
         left_trunc_marker = "",
