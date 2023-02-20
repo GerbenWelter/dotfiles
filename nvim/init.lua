@@ -410,6 +410,7 @@ local servers = {
     -- rust_analyzer = {},
     -- tsserver = {},
 
+    bashls = {},
     lua_ls = {
         Lua = {
             format = {
