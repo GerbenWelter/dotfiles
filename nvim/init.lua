@@ -163,6 +163,9 @@ vim.o.hlsearch = false
 -- Make line numbers default
 vim.wo.number = true
 
+-- Disable word wrap
+vim.o.wrap = false
+
 -- Enable mouse mode
 vim.o.mouse = "a"
 
@@ -201,6 +204,9 @@ vim.g.maplocalleader = " "
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+
+-- Map key for toggling word wrap
+vim.keymap.set("n", "<leader>z", ":set wrap!<CR>", { silent = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
