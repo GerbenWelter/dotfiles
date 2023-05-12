@@ -74,9 +74,9 @@ require("packer").startup(function(use)
             "MunifTanjim/nui.nvim",
         },
     })
-    use("nvim-lualine/lualine.nvim") -- Fancier statusline
+    use("nvim-lualine/lualine.nvim")        -- Fancier statusline
     use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
-    use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
+    use("numToStr/Comment.nvim")            -- "gc" to comment visual regions/lines
     use("ntpeters/vim-better-whitespace")
     use("christoomey/vim-tmux-navigator")
 
@@ -91,7 +91,7 @@ require("packer").startup(function(use)
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
     null_ls.setup({
         sources = {
-            null_ls.builtins.formatting.prettier,
+            -- null_ls.builtins.formatting.prettier,
             null_ls.builtins.formatting.stylua,
             null_ls.builtins.formatting.gofmt,
             null_ls.builtins.formatting.rustfmt,
@@ -476,7 +476,7 @@ cmp.setup({
         end,
     },
     mapping = cmp.mapping.preset.insert({
-        ["<C-d>"] = cmp.mapping.scroll_docs( -4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete({}),
         ["<CR>"] = cmp.mapping.confirm({
@@ -495,8 +495,8 @@ cmp.setup({
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif luasnip.jumpable( -1) then
-                luasnip.jump( -1)
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
             else
                 fallback()
             end
