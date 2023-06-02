@@ -50,6 +50,7 @@ require("packer").startup(function(use)
 
     -- Git related plugins
     use("tpope/vim-fugitive")
+    use("tpope/vim-repeat")
     use("tpope/vim-rhubarb")
     use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
     use("tpope/vim-surround")
