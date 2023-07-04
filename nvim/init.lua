@@ -216,6 +216,18 @@ vim.keymap.set("n", "<S-F12>", ":PackerSync<CR>", { silent = true })
 vim.keymap.set("n", "<F24>", ":PackerSync<CR>", { silent = true })
 vim.keymap.set("n", "<c-n>", ":NeoTreeFocusToggle<CR>", { silent = true })
 
+function _G.toggle_columns()
+    vim.wo.number = not vim.wo.number
+    if vim.wo.signcolumn == "yes" then
+        vim.wo.signcolumn = "no"
+    else
+        vim.wo.signcolumn = "yes"
+    end
+end
+
+vim.keymap.set("n", "<S-F5>", ":lua toggle_columns()<CR>")
+vim.keymap.set("n", "<F17>", ":lua toggle_columns()<CR>")
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
