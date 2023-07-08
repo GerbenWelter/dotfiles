@@ -217,6 +217,8 @@ vim.keymap.set("n", "<F24>", ":PackerSync<CR>", { silent = true })
 vim.keymap.set("n", "<c-n>", ":NeoTreeFocusToggle<CR>", { silent = true })
 
 function _G.toggle_columns()
+    local ibc = require("indent_blankline.commands")
+    ibc.toggle("IndentBlanklineToggle")
     vim.wo.number = not vim.wo.number
     if vim.wo.signcolumn == "yes" then
         vim.wo.signcolumn = "no"
