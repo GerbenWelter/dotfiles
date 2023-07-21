@@ -69,7 +69,7 @@ require("packer").startup(function(use)
 	})
 	use({
 		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v2.x",
+		branch = "v3.x",
 		requires = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
@@ -229,7 +229,7 @@ vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set("n", "<S-F12>", ":PackerSync<CR>", { silent = true })
 vim.keymap.set("n", "<F24>", ":PackerSync<CR>", { silent = true })
-vim.keymap.set("n", "<c-n>", ":NeoTreeFocusToggle<CR>", { silent = true })
+vim.keymap.set("n", "<c-n>", ":Neotree toggle<CR>", { silent = true })
 
 function _G.toggle_columns()
 	local ibc = require("indent_blankline.commands")
