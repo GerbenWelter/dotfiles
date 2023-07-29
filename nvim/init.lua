@@ -33,10 +33,17 @@ vim.keymap.set("n", "<c-n>", ":Neotree toggle<CR>", { silent = true })
 
 -- Set colorscheme
 vim.o.termguicolors = true
--- vim.cmd([[colorscheme onedark]])
-vim.cmd([[colorscheme noctis_obscuro]])
 
 local plugins = {
+    {
+        "talha-akram/noctis.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            -- load the colorscheme here
+            vim.cmd([[colorscheme noctis_obscuro]])
+        end,
+    },
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     -- LSP Configuration & Plugins
     {
@@ -70,7 +77,6 @@ local plugins = {
     "lewis6991/gitsigns.nvim",
 
     "navarasu/onedark.nvim", -- Theme inspired by Atom
-    "talha-akram/noctis.nvim",
 
     {
         -- bufferline at top of screen
