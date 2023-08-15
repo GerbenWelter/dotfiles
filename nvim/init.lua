@@ -257,7 +257,7 @@ require("indent_blankline").setup({
 
 -- Gitsigns
 -- See `:help gitsigns.txt`
-require("gitsigns").setup()
+require("gitsigns").setup({})
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
