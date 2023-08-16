@@ -54,10 +54,13 @@ local plugins = {
             "williamboman/mason-lspconfig.nvim",
 
             -- Useful status updates for LSP
-            { "j-hui/fidget.nvim", branch = "legacy" },
-
-            -- Additional lua configuration, makes nvim stuff amazing
-            "folke/neodev.nvim",
+            {
+                "j-hui/fidget.nvim",
+                branch = "legacy",
+                config = function()
+                    require("fidget").setup()
+                end,
+            },
         },
     },
 
@@ -93,7 +96,6 @@ local plugins = {
             "MunifTanjim/nui.nvim",
         },
     },
-
     {
         "jose-elias-alvarez/null-ls.nvim",
         dependencies = {
@@ -358,6 +360,7 @@ local servers = {
     bashls = {},
     lua_ls = {
         Lua = {
+            diagnostics = { globals = { "vim" } },
             format = {
                 enable = true,
             },
@@ -367,9 +370,6 @@ local servers = {
     },
 }
 
--- Setup neovim lua configuration
-require("neodev").setup()
---
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
@@ -401,9 +401,6 @@ require("mason-tool-installer").setup({
         "stylua",
     },
 })
-
--- Turn on lsp status information
-require("fidget").setup()
 
 -- nvim-cmp setup
 local cmp = require("cmp")
