@@ -151,9 +151,10 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
     sources = {
         -- null_ls.builtins.formatting.prettier,
-        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.gofmt,
         null_ls.builtins.formatting.rustfmt,
+        null_ls.builtins.formatting.stylua,
     },
     -- you can reuse a shared lspconfig on_attach callback here
     on_attach = function(client, bufnr)
@@ -394,6 +395,7 @@ mason_lspconfig.setup_handlers({
 
 require("mason-tool-installer").setup({
     ensure_installed = {
+        "black",
         "shellcheck",
         "shfmt",
         "stylua",
