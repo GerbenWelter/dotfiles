@@ -3,10 +3,7 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
-		{
-			"smjonas/inc-rename.nvim",
-			config = true,
-		},
+		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
 	config = function()
 		-- import lspconfig plugin
@@ -17,10 +14,9 @@ return {
 
 		local keymap = vim.keymap -- for conciseness
 
-		-- enable keybinds only for when lsp server available
+		local opts = { noremap = true, silent = true }
 		local on_attach = function(client, bufnr)
-			-- keybind options
-			local opts = { noremap = true, silent = true, buffer = bufnr }
+			opts.buffer = bufnr
 
 			-- set keybinds
 			opts.desc = "Show LSP references"
@@ -42,7 +38,7 @@ return {
 			keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
 
 			opts.desc = "Smart rename"
-			keymap.set("n", "<leader>rn", ":IncRename ", opts) -- smart rename
+			keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
 
 			opts.desc = "Show buffer diagnostics"
 			keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
@@ -95,7 +91,22 @@ return {
 			},
 		})
 
+		-- configure gopls
+		lspconfig["gopls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+		-- configure html
+		lspconfig["html"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
 		-- configure pyright
-		lspconfig["pyright"].setup({})
+		lspconfig["pyright"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
 	end,
 }
