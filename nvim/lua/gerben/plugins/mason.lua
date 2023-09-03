@@ -21,6 +21,8 @@ return {
 			-- list of servers for mason to install
 			ensure_installed = {
 				"bashls",
+				"gopls",
+				"html",
 				"lua_ls",
 				"pyright",
 			},
