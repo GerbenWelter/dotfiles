@@ -91,6 +91,12 @@ return {
 			},
 		})
 
+		-- configure bashls
+		lspconfig["bashls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
 		-- configure gopls
 		lspconfig["gopls"].setup({
 			capabilities = capabilities,
