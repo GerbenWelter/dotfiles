@@ -2,7 +2,7 @@ return {
 	"williamboman/mason.nvim",
 	dependencies = {
 		"williamboman/mason-lspconfig.nvim",
-		"jayp0521/mason-null-ls.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
 	config = function()
 		-- import mason plugin safely
@@ -11,11 +11,19 @@ return {
 		-- import mason-lspconfig plugin safely
 		local mason_lspconfig = require("mason-lspconfig")
 
-		-- import mason-null-ls plugin safely
-		local mason_null_ls = require("mason-null-ls")
+		-- automatically install tools
+		local mason_tool_installer = require("mason-tool-installer")
 
 		-- enable mason
-		mason.setup()
+		mason.setup({
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
+				},
+			},
+		})
 
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
@@ -30,18 +38,14 @@ return {
 			automatic_installation = true, -- not the same as ensure_installed
 		})
 
-		mason_null_ls.setup({
-			-- list of formatters & linters for mason to install
+		mason_tool_installer.setup({
 			ensure_installed = {
-				"black", -- python formatter
-				"prettier", -- ts/js formatter
+				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
-				"shellcheck",
-				"shfmt",
-				"stylua",
+				"isort", -- python formatter
+				"black", -- python formatter
+				"pylint", -- python linter
 			},
-			-- auto-install configured servers (with lspconfig)
-			automatic_installation = true,
 		})
 	end,
 }
