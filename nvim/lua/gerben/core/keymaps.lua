@@ -8,7 +8,7 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Create function and keymaps for toggling all columns
 -- for easier copy/paste.
 function _G.toggle_columns()
-	require("indent_blankline.commands").toggle("IndentBlanklineToggle")
+	vim.cmd("IBLToggle")
 	vim.wo.number = not vim.wo.number
 	if vim.wo.signcolumn == "yes" then
 		vim.wo.signcolumn = "no"
