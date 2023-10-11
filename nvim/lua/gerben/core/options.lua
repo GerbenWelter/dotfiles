@@ -47,3 +47,7 @@ vim.wo.signcolumn = "yes"
 -- Set cursor line options
 vim.wo.cursorline = true
 -- vim.wo.cursorlineopt = "number"
+
+-- Start scrolling before end of screen
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
