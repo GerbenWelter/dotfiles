@@ -1,12 +1,16 @@
 local ensure_installed = {
 	"bashls",
-	"html",
 	"jedi_language_server",
 	"lua_ls",
 }
 
 if os.getenv("NVIM_GO") then
 	table.insert(ensure_installed, "gopls")
+end
+
+if os.getenv("NVIM_HTML") then
+	table.insert(ensure_installed, "html")
+	table.insert(ensure_installed, "cssls")
 end
 
 return {
