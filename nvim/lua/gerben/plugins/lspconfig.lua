@@ -97,11 +97,13 @@ return {
 			on_attach = on_attach,
 		})
 
-		-- configure gopls
-		lspconfig["gopls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
+		if os.getenv("NVIM_GO") then
+			-- configure gopls
+			lspconfig["gopls"].setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+		end
 
 		-- configure html
 		lspconfig["html"].setup({
