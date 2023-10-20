@@ -17,14 +17,6 @@ return {
 		local conform = require("conform")
 
 		conform.setup({
-			-- formatters_by_ft = {
-			-- 	go = { "goimports", "gofmt" },
-			-- 	json = { "prettier" },
-			-- 	lua = { "stylua" },
-			-- 	markdown = { "prettier" },
-			-- 	python = { "isort", "black" },
-			-- 	yaml = { "prettier" },
-			-- },
 			formatters_by_ft = formatters,
 			format_on_save = {
 				lsp_fallback = true,
