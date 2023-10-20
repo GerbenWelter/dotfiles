@@ -6,9 +6,9 @@ local formatters = {
 	yaml = { "prettier" },
 }
 
--- if os.getenv("NVIM_GO") then
-table.insert(formatters, 'go = { "goimports", "gofmt" }')
--- end
+if os.getenv("NVIM_GO") then
+	table.insert(formatters, 'go = { "goimports", "gofmt" }')
+end
 
 return {
 	"stevearc/conform.nvim",
