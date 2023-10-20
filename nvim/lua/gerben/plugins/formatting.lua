@@ -1,3 +1,15 @@
+local formatters = {
+	json = { "prettier" },
+	lua = { "stylua" },
+	markdown = { "prettier" },
+	python = { "isort", "black" },
+	yaml = { "prettier" },
+}
+
+-- if os.getenv("NVIM_GO") then
+table.insert(formatters, 'go = { "goimports", "gofmt" }')
+-- end
+
 return {
 	"stevearc/conform.nvim",
 	event = { "BufReadPre", "BufNewFile" },
@@ -5,14 +17,15 @@ return {
 		local conform = require("conform")
 
 		conform.setup({
-			formatters_by_ft = {
-				go = { "goimports", "gofmt" },
-				json = { "prettier" },
-				lua = { "stylua" },
-				markdown = { "prettier" },
-				python = { "isort", "black" },
-				yaml = { "prettier" },
-			},
+			-- formatters_by_ft = {
+			-- 	go = { "goimports", "gofmt" },
+			-- 	json = { "prettier" },
+			-- 	lua = { "stylua" },
+			-- 	markdown = { "prettier" },
+			-- 	python = { "isort", "black" },
+			-- 	yaml = { "prettier" },
+			-- },
+			formatters_by_ft = formatters,
 			format_on_save = {
 				lsp_fallback = true,
 				async = false,
