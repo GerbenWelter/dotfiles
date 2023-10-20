@@ -1,7 +1,11 @@
 local ensure_installed = {
 	"bashls",
-	"jedi_language_server",
 	"lua_ls",
+}
+
+local tool_ensure_installed = {
+	"prettier",
+	"stylua",
 }
 
 if os.getenv("NVIM_GO") then
@@ -11,6 +15,13 @@ end
 if os.getenv("NVIM_HTML") then
 	table.insert(ensure_installed, "html")
 	table.insert(ensure_installed, "cssls")
+end
+
+if os.getenv("NVIM_PYTHON") then
+	table.insert(ensure_installed, "jedi_language_server")
+	table.insert(tool_ensure_installed, "isort")
+	table.insert(tool_ensure_installed, "black")
+	table.insert(tool_ensure_installed, "pylint")
 end
 
 return {
@@ -47,13 +58,7 @@ return {
 		})
 
 		mason_tool_installer.setup({
-			ensure_installed = {
-				"prettier", -- prettier formatter
-				"stylua", -- lua formatter
-				"isort", -- python formatter
-				"black", -- python formatter
-				"pylint", -- python linter
-			},
+			ensure_installed = tool_ensure_installed,
 		})
 	end,
 }
