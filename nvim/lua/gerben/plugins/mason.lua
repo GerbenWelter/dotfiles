@@ -1,3 +1,14 @@
+local ensure_installed = {
+	"bashls",
+	"html",
+	"jedi_language_server",
+	"lua_ls",
+}
+
+if os.getenv("NVIM_GO") then
+	table.insert(ensure_installed, "gopls")
+end
+
 return {
 	"williamboman/mason.nvim",
 	dependencies = {
@@ -26,14 +37,7 @@ return {
 		})
 
 		mason_lspconfig.setup({
-			-- list of servers for mason to install
-			ensure_installed = {
-				"bashls",
-				"gopls",
-				"html",
-				"jedi_language_server",
-				"lua_ls",
-			},
+			ensure_installed = ensure_installed,
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
 		})
