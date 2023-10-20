@@ -105,11 +105,18 @@ return {
 			})
 		end
 
-		-- configure html
-		lspconfig["html"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
+		if os.getenv("NVIM_HTML") then
+			-- configure html
+			lspconfig["html"].setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+			-- configure css server
+			lspconfig["cssls"].setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+		end
 
 		-- configure pyright
 		lspconfig["jedi_language_server"].setup({
