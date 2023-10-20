@@ -2,12 +2,15 @@ local formatters = {
 	json = { "prettier" },
 	lua = { "stylua" },
 	markdown = { "prettier" },
-	python = { "isort", "black" },
 	yaml = { "prettier" },
 }
 
 if os.getenv("NVIM_GO") then
 	table.insert(formatters, 'go = { "goimports", "gofmt" }')
+end
+
+if os.getenv("NVIM_PYTHON") then
+	table.insert(formatters, 'python = { "isort", "black" }')
 end
 
 return {
