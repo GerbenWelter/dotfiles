@@ -2,6 +2,7 @@ local formatters = {
 	json = { "prettier" },
 	lua = { "stylua" },
 	markdown = { "prettier" },
+	sh = { "shfmt" },
 	yaml = { "prettier" },
 }
 
