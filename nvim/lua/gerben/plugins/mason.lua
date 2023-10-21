@@ -5,6 +5,8 @@ local ensure_installed = {
 
 local tool_ensure_installed = {
 	"prettier",
+	"shellcheck",
+	"shfmt",
 	"stylua",
 }
 
