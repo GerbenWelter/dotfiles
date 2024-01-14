@@ -51,3 +51,6 @@ vim.wo.cursorline = true
 -- Start scrolling before end of screen
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
+
+-- Don't show keystrokes in CmdLine
+vim.opt.showcmd = false
