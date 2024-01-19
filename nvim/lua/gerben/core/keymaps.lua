@@ -22,3 +22,6 @@ vim.keymap.set("n", "<F17>", ":lua toggle_columns()<CR>")
 
 vim.keymap.set("n", "<C-j>", ":BufferLineCyclePrev<CR>")
 vim.keymap.set("n", "<C-k>", ":BufferLineCycleNext<CR>")
+
+vim.keymap.set("n", "<S-C-j>", ":BufferLineMovePrev<CR>")
+vim.keymap.set("n", "<S-C-k>", ":BufferLineMoveNext<CR>")
