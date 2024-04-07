@@ -3,5 +3,6 @@ return {
 	main = "ibl",
 	opts = {
 		scope = { enabled = false },
+		indent = { char = "┊" },
 	},
 }
