@@ -132,6 +132,7 @@ return {
 							diagnostics = {
 								globals = { "vim", "on_attach" },
 							},
+							hint = { enable = true },
 							workspace = {
 								-- make language server aware of runtime files
 								library = {
