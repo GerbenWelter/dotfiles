@@ -1,0 +1,25 @@
+[global_config]
+  handle_size = 3
+[keybindings]
+  hide_window = <Primary><Shift>j
+[profiles]
+  [[default]]
+    cursor_shape = ibeam
+    cursor_fg_color = "#000000"
+    cursor_bg_color = "#aaaaaa"
+    cursor_color_default = False
+    font = JetBrainsMono Nerd Font 12
+    show_titlebar = False
+    scrollback_infinite = True
+    word_chars = "-A-Za-z0-9,./?%&#_~+"
+    use_system_font = False
+    copy_on_selection = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
