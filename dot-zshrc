@@ -35,6 +35,10 @@ zinit snippet OMZP::kubectl
 zinit snippet OMZP::oc
 zinit snippet OMZP::sudo
 
+if [ "$(uname -s)" = "Darwin" ]; then
+	zinit snippet OMZP::brew
+fi
+
 # Load completions
 autoload -Uz compinit && compinit
 
