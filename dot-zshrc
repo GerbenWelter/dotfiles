@@ -37,6 +37,7 @@ zinit snippet OMZP::sudo
 
 if [ "$(uname -s)" = "Darwin" ]; then
 	zinit snippet OMZP::brew
+	alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
 fi
 
 # Load completions
