@@ -30,6 +30,7 @@ zinit light jonmosco/kube-ps1
 # Add in snippets
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::dnf
+zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::oc
