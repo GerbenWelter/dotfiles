@@ -73,7 +73,8 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
-# ls="ls --color"
+# alias ls="ls --color"
+alias ll="ls -alh --color=auto"
 
 # Shell integrations
 # eval "$(fzf --zsh)"
