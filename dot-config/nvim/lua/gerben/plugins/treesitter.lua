@@ -50,7 +50,16 @@ return {
 				},
 				-- auto install above language parsers
 				auto_install = true,
+				-- activate linter in query editor
+				query_linter = {
+					enable = true,
+					use_virtual_text = true,
+					lint_events = { "BufWrite", "CursorHold" },
+				},
 			})
 		end,
+	},
+	{
+		"nvim-treesitter/playground",
 	},
 }
