@@ -7,11 +7,11 @@ local formatters = {
 }
 
 if os.getenv("NVIM_GO") then
-	table.insert(formatters, 'go = { "goimports", "gofmt" }')
+	formatters["go"] = { "goimports", "gofmt" }
 end
 
 if os.getenv("NVIM_PYTHON") then
-	table.insert(formatters, 'python = { "isort", "black" }')
+	formatters["python"] = { "isort", "black" }
 end
 
 return {
