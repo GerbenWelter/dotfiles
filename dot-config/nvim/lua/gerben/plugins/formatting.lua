@@ -1,9 +1,11 @@
 local formatters = {
 	json = { "prettier" },
 	lua = { "stylua" },
+	-- markdown seems to use the formatter 'injected' additionally by default
+	-- although 'ConformInfo' doesn't show it
 	markdown = { "prettier" },
 	sh = { "shfmt" },
-	yaml = { "prettier" },
+	yaml = { "prettier", "injected" },
 }
 
 if os.getenv("NVIM_GO") then
@@ -16,24 +18,36 @@ end
 
 return {
 	"stevearc/conform.nvim",
-	event = { "BufReadPre", "BufNewFile" },
-	config = function()
-		local conform = require("conform")
-
-		conform.setup({
-			formatters_by_ft = formatters,
-			format_on_save = {
-				lsp_fallback = true,
-				async = false,
-				timeout_ms = 1000,
+	event = { "BufWritePre" },
+	cmd = { "ConformInfo" },
+	keys = {
+		{
+			-- Customize or remove this keymap to your liking
+			"<leader>f",
+			function()
+				require("conform").format({ async = true, lsp_fallback = true })
+			end,
+			mode = "",
+			desc = "Format buffer",
+		},
+	},
+	-- Everything in opts will be passed to setup()
+	opts = {
+		log_level = vim.log.levels.TRACE,
+		-- Define your formatters
+		formatters_by_ft = formatters,
+		formatters = {
+			injected = {
+				options = {
+					ignore_errors = false,
+				},
 			},
-		})
-
-		vim.keymap.set({ "n", "v" }, "<leader>mp", function()
-			conform.format({
-				lsp_fallback = true,
-				async = false,
-			})
-		end, { desc = "Format file or range (in visual mode)" })
+		},
+		-- Set up format-on-save
+		format_on_save = { timeout_ms = 5000, lsp_fallback = true },
+	},
+	init = function()
+		-- If you want the formatexpr, here is the place to set it
+		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 	end,
 }
