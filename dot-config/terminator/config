@@ -1,5 +1,6 @@
 [global_config]
   handle_size = 3
+  always_split_with_profile = True
 [keybindings]
   hide_window = <Primary><Shift>j
 [profiles]
@@ -14,11 +15,24 @@
     word_chars = "-A-Za-z0-9,./?%&#_~+"
     use_system_font = False
     copy_on_selection = True
+  [[tokyonight]]
+    background_color = "#1a1b26"
+    cursor_shape = ibeam
+    cursor_color_default = False
+    font = MesloLGS NF Bold 12
+    foreground_color = "#a9b1d6"
+    show_titlebar = False
+    scrollback_infinite = True
+    palette = "#1a1b26:#f7768e:#9ece6a:#e0af68:#7aa2f7:#9a7ecc:#4abaaf:#acb0d0:#4e5173:#f7768e:#9ece6a:#e0af68:#7aa2f7:#9a7ecc:#4abaaf:#acb0d0"
+    word_chars = "-A-Za-z0-9,./?%&#_~+"
+    use_system_font = False
+    copy_on_selection = True
 [layouts]
   [[default]]
     [[[child1]]]
       parent = window0
       type = Terminal
+      profile = tokyonight
     [[[window0]]]
       parent = ""
       type = Window
