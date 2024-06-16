@@ -23,6 +23,7 @@ return {
 			-- configure treesitter
 			treesitter.setup({ -- enable syntax highlighting
 				highlight = {
+					-- If enabled it will override the colorscheme
 					enable = true,
 				},
 				-- enable indentation
