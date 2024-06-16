@@ -33,7 +33,6 @@ return {
 	},
 	-- Everything in opts will be passed to setup()
 	opts = {
-		log_level = vim.log.levels.TRACE,
 		-- Define your formatters
 		formatters_by_ft = formatters,
 		formatters = {
@@ -42,9 +41,17 @@ return {
 					ignore_errors = false,
 				},
 			},
+			prettier = {
+				prepend_args = {
+					"--single-quote",
+				},
+			},
 		},
 		-- Set up format-on-save
-		format_on_save = { timeout_ms = 5000, lsp_fallback = true },
+		format_on_save = {
+			timeout_ms = 5000,
+			lsp_fallback = true,
+		},
 	},
 	init = function()
 		-- If you want the formatexpr, here is the place to set it
