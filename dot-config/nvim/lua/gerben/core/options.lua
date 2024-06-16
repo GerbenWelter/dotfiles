@@ -11,9 +11,9 @@ vim.g.maplocalleader = " "
 -- Set colorscheme
 vim.o.termguicolors = true
 
--- Set tabstop = 4
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
+-- Set tabstop = 2
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -54,3 +54,6 @@ vim.opt.sidescrolloff = 8
 
 -- Don't show keystrokes in CmdLine
 vim.opt.showcmd = false
+
+-- Set indent keys
+vim.opt.indentkeys = "!^F,o,O,0#,0},0],<:>"
