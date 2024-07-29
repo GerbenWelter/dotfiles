@@ -17,14 +17,13 @@ blocks:
           style: full
       - type: git
         style: plain
-        foreground: 'p:grey'
-        background: transparent
+        foreground: grey
         template: ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}<cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
         properties:
           fetch_status: true
       - type: python
         style: plain
-        foreground: cyan
+        foreground: yellow
         template: '  {{ if .Venv }}{{ .Venv }}@{{ end }}{{ .Full }}'
         properties:
           display_mode: context
