@@ -10,4 +10,5 @@ return {
 	},
 	"talha-akram/noctis.nvim",
 	"navarasu/onedark.nvim",
+	"folke/tokyonight.nvim",
 }
