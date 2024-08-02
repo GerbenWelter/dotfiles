@@ -11,9 +11,9 @@ vim.g.maplocalleader = " "
 -- Set colorscheme
 vim.o.termguicolors = true
 
--- Set tabstop = 2
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
+-- Set tabstop = 4
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
 
 -- Set highlight on search
 vim.o.hlsearch = false
