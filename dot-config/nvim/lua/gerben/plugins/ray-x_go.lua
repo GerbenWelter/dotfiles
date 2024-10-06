@@ -1,13 +1,14 @@
 if os.getenv("NVIM_GO") then
 	return {
 		"ray-x/go.nvim",
-		dependencies = { -- optional packages
+		dependencies = {
 			"ray-x/guihua.lua",
 			"neovim/nvim-lspconfig",
 			"nvim-treesitter/nvim-treesitter",
 		},
 		config = function()
 			require("go").setup()
+			vim.keymap.set("n", "<leader>cl", "<cmd>GoCodeLenAct<CR>")
 		end,
 		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
