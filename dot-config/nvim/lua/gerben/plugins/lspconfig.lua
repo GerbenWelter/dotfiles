@@ -121,6 +121,15 @@ return {
 					on_attach = on_attach,
 				})
 			end,
+			["helm_ls"] = function()
+				if os.getenv("NVIM_HELM") then
+					-- configure gopls
+					lspconfig["helm_ls"].setup({
+						capabilities = capabilities,
+						on_attach = on_attach,
+					})
+				end
+			end,
 			["lua_ls"] = function()
 				-- configure lua server (with special settings)
 				lspconfig["lua_ls"].setup({
