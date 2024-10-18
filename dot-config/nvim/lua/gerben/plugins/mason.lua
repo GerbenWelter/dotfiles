@@ -26,6 +26,10 @@ if os.getenv("NVIM_PYTHON") then
 	table.insert(tool_ensure_installed, "pylint")
 end
 
+if os.getenv("NVIM_HELM") then
+	table.insert(ensure_installed, "helm_ls")
+end
+
 return {
 	"williamboman/mason.nvim",
 	dependencies = {
