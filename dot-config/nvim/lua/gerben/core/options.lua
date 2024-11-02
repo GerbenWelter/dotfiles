@@ -1,6 +1,9 @@
 -- Let neovim use its own virtual env
 vim.g.python3_host_prog = vim.fn.expand("~/venv/neovim/bin/python")
 
+-- Recommended session options
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 -- [[ Basic Keymaps ]]
 -- Set <space> as the leader key
 -- See `:help mapleader`
