@@ -33,14 +33,18 @@ return {
 				-- ensure these language parsers are installed
 				ensure_installed = {
 					"bash",
+					"comment",
 					"dockerfile",
 					"gitignore",
+					"gosum",
 					"gotmpl",
+					"gowork",
 					"json",
 					"lua",
 					"markdown",
 					"markdown_inline",
 					"python",
+					"sql",
 					"query",
 					"vim",
 					"yaml",
