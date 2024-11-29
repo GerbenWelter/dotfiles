@@ -22,6 +22,9 @@ vim.keymap.set("n", "<C-k>", ":BufferLineCycleNext<CR>")
 vim.keymap.set("n", "<S-C-j>", ":BufferLineMovePrev<CR>")
 vim.keymap.set("n", "<S-C-k>", ":BufferLineMoveNext<CR>")
 
+vim.keymap.set("i", "<C-s>", "<Esc>:write<CR>li")
+vim.keymap.set("n", "<C-s>", ":write<CR>")
+
 -- window management
 vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
 vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
