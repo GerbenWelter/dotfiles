@@ -8,6 +8,7 @@ local tool_ensure_installed = {
 	"shellcheck",
 	"shfmt",
 	"stylua",
+	"taplo",
 }
 
 if os.getenv("NVIM_GO") then
@@ -28,6 +29,10 @@ end
 
 if os.getenv("NVIM_HELM") then
 	table.insert(ensure_installed, "helm_ls")
+end
+
+if os.getenv("NVIM_RUST") then
+	table.insert(ensure_installed, "rust_analyzer")
 end
 
 return {

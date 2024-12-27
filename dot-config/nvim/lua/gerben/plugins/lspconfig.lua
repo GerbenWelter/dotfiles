@@ -153,6 +153,22 @@ return {
 					},
 				})
 			end,
+			["rust_analyzer"] = function()
+				if os.getenv("NVIM_RUST") then
+					-- configure rust
+					lspconfig["rust_analyzer"].setup({
+						capabilities = capabilities,
+						on_attach = on_attach,
+						settings = {
+							["rust-analyzer"] = {
+								diagnostics = {
+									enable = false,
+								},
+							},
+						},
+					})
+				end
+			end,
 		})
 	end,
 }

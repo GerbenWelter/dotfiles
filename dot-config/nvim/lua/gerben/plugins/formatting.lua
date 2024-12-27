@@ -16,6 +16,10 @@ if os.getenv("NVIM_PYTHON") then
 	formatters["python"] = { "isort", "black" }
 end
 
+if os.getenv("NVIM_RUST") then
+	formatters["toml"] = { "taplo" }
+end
+
 return {
 	"stevearc/conform.nvim",
 	event = { "BufWritePre" },
