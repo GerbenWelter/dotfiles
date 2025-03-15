@@ -123,7 +123,7 @@ return {
 			end,
 			["helm_ls"] = function()
 				if os.getenv("NVIM_HELM") then
-					-- configure gopls
+					-- configure helm
 					lspconfig["helm_ls"].setup({
 						capabilities = capabilities,
 						on_attach = on_attach,
