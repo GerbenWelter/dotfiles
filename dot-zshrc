@@ -91,3 +91,7 @@ export NVIM_HTML=1
 export NVIM_PYTHON=1
 
 PROMPT='$(kube_ps1)'$PROMPT # or RPROMPT='$(kube_ps1)'
+
+# Direnv
+eval "$(direnv hook zsh)"
+
