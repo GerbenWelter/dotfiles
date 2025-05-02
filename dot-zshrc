@@ -81,17 +81,6 @@ alias gdh="git diff HEAD"
 # eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-# Set $PATH and related variables
-export PATH=$PATH:$HOME/bin:$HOME/go/bin:/usr/local/cuda/bin
-export CUDA_HOME=/usr/local/cuda
-
-export NVIM_GO=1
-export NVIM_HELM=1
-export NVIM_HTML=1
-export NVIM_PYTHON=1
-
-PROMPT='$(kube_ps1)'$PROMPT # or RPROMPT='$(kube_ps1)'
-
-# Direnv
-eval "$(direnv hook zsh)"
-
+if [ -f $HOME/.zshrc.local ]; then
+	source $HOME/.zshrc.local
+fi
