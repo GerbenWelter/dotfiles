@@ -81,6 +81,8 @@ alias gdh="git diff HEAD"
 # eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
+PROMPT='$(kube_ps1)'$PROMPT # or RPROMPT='$(kube_ps1)'
+
 if [ -f $HOME/.zshrc.local ]; then
 	source $HOME/.zshrc.local
 fi
