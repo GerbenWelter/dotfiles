@@ -60,3 +60,5 @@ vim.opt.showcmd = false
 
 -- Set indent keys
 vim.opt.indentkeys = "!^F,o,O,0#,0},0],<:>"
+
+vim.o.winborder = "rounded"
