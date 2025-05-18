@@ -60,6 +60,12 @@ blocks:
   segments:
   - properties:
       cache_duration: none
+    template: '{{ if eq .HostName "toolbx" }}🧰 {{ end }}'
+    foreground: magenta
+    type: text
+    style: plain
+  - properties:
+      cache_duration: none
     template: ❯
     foreground: magenta
     type: text
