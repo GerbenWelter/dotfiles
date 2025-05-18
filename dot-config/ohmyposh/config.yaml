@@ -1,83 +1,83 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
 
 secondary_prompt:
-  template: "❯❯ "
+  template: '❯❯ '
   foreground: magenta
   background: transparent
 transient_prompt:
-  template: "❯ "
+  template: '❯ '
   background: transparent
   foreground_templates:
-  - "{{ if gt .Code 0 }}red{{ end }}"
-  - "{{ if eq .Code 0 }}magenta{{ end }}"
-console_title_template: "{{ .Shell }} in {{ .Folder }}"
+    - '{{ if gt .Code 0 }}red{{ end }}'
+    - '{{ if eq .Code 0 }}magenta{{ end }}'
+console_title_template: '{{ .Shell }} in {{ .Folder }}'
 blocks:
-- type: prompt
-  alignment: left
-  segments:
-  - properties:
-      cache_duration: none
-      style: full
-    template: "{{ .Path }}"
-    foreground: blue
-    type: path
-    style: plain
-  - properties:
-      cache_duration: none
-      fetch_status: true
-    template: " {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}<cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>"
-    foreground: p:grey
-    background: transparent
-    type: git
-    style: plain
-  - properties:
-      cache_duration: none
-      display_mode: context
-    template: " \ue235 {{ if .Venv }}{{ .Venv }}@{{ end }}{{ .Full }}"
-    foreground: cyan
-    type: python
-    style: plain
-  - properties:
-      cache_duration: none
-    template: " \u202dﳑ {{ .Full }} "
-    foreground: cyan
-    type: go
-    style: plain
-  newline: true
-- type: rprompt
-  overflow: hidden
-  segments:
-  - properties:
-      cache_duration: none
-      threshold: 5000
-    template: "{{ .FormattedMs }}"
-    foreground: yellow
-    background: transparent
-    type: executiontime
-    style: plain
-- type: prompt
-  alignment: left
-  segments:
-  - properties:
-      cache_duration: none
-    template: '{{ if eq .HostName "toolbx" }}🧰 {{ end }}'
-    foreground: magenta
-    type: text
-    style: plain
-  - properties:
-      cache_duration: none
-    template: ❯
-    foreground: magenta
-    type: text
-    style: plain
-  newline: true
+  - type: prompt
+    alignment: left
+    segments:
+      - properties:
+          cache_duration: none
+          style: full
+        template: '{{ .Path }}'
+        foreground: blue
+        type: path
+        style: plain
+      - properties:
+          cache_duration: none
+          fetch_status: true
+        template: ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}<cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
+        foreground: p:grey
+        background: transparent
+        type: git
+        style: plain
+      - properties:
+          cache_duration: none
+          display_mode: context
+        template: " \ue235 {{ if .Venv }}{{ .Venv }}@{{ end }}{{ .Full }}"
+        foreground: cyan
+        type: python
+        style: plain
+      - properties:
+          cache_duration: none
+        template: " \u202dﳑ {{ .Full }} "
+        foreground: cyan
+        type: go
+        style: plain
+    newline: true
+  - type: rprompt
+    overflow: hidden
+    segments:
+      - properties:
+          cache_duration: none
+          threshold: 5000
+        template: '{{ .FormattedMs }}'
+        foreground: yellow
+        background: transparent
+        type: executiontime
+        style: plain
+  - type: prompt
+    alignment: left
+    segments:
+      - properties:
+          cache_duration: none
+        template: '{{ if eq .HostName "toolbx" }}🧰 {{ end }}'
+        foreground: magenta
+        type: text
+        style: plain
+      - properties:
+          cache_duration: none
+        template: ❯
+        foreground: magenta
+        type: text
+        style: plain
+    newline: true
 tooltips:
-- template: ﴱ {{ upper ((split "-" .Cluster)._1) }}
-  foreground: cyan
-  type: kubectl
-  style: plain
-  tips:
-  - kubectl
-  - oc
+  - template: ﴱ {{ upper ((split "-" .Cluster)._1) }}
+    foreground: cyan
+    type: kubectl
+    style: plain
+    tips:
+      - kubectl
+      - oc
 version: 3
 final_space: true
