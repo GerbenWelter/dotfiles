@@ -58,12 +58,14 @@ blocks:
   - type: prompt
     alignment: left
     segments:
-      - properties:
-          cache_duration: none
-        template: '{{ if eq .HostName "toolbx" }}🧰 {{ end }}'
-        foreground: magenta
-        type: text
+      - type: command
         style: plain
+        foreground: magenta
+        properties:
+          shell: zsh
+          command: awk -F\" '/name/ { gsub(/%/, "%%", $2); print $2 }' /run/.containerenv
+          cache_duration: none
+        template: '{{ if eq .HostName "toolbx" }}🧰{{ .Output }} {{ end }}'
       - properties:
           cache_duration: none
         template: ❯
