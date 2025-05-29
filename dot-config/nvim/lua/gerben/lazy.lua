@@ -12,6 +12,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	{ "neovim/nvim-lspconfig", lazy = true, dependencies = {
+		{ "hrsh7th/cmp-nvim-lsp" },
+	} },
 	{ import = "gerben.plugins" },
 }, {
 	install = {
