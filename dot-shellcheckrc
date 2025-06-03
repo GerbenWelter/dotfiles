@@ -1,0 +1,3 @@
+# disable checking sourced files
+disable=SC1090
+
