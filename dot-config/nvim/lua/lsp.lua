@@ -25,6 +25,7 @@ vim.diagnostic.config(config)
 
 -- keymappings
 vim.keymap.set("n", "<leader>df", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "shows diagnostics in floating window" })
+vim.keymap.set("n", "<leader>gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "goto definition" })
 
 -- This enables code completion using LSP
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
