@@ -60,6 +60,7 @@ return {
 					package_uninstalled = "✗",
 				},
 			},
+			-- log_level = vim.log.levels.DEBUG,
 		})
 
 		mason_lspconfig.setup({
