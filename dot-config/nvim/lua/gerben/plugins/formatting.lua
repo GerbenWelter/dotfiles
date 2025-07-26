@@ -38,6 +38,7 @@ return {
 	-- Everything in opts will be passed to setup()
 	opts = {
 		-- Define your formatters
+		-- log_level = vim.log.levels.TRACE,
 		formatters_by_ft = formatters,
 		formatters = {
 			injected = {

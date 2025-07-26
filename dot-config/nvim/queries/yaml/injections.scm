@@ -1,47 +1,60 @@
-;; NamespaceConfig resources
-; (block_mapping
-;   (block_mapping_pair
-; 	key: (flow_node) @objecttemplate (#eq? @objecttemplate "objectTemplate")
-; 	value: (block_node
-; 			 (block_scalar) @injection.content
-; 			 (#set! injection.language "gotmpl"))
-; 	(#offset! @injection.content 1 -22 0 0)
-; 	))
+; the offset predicates are needed to skip the '|' or '>' which
+; otherwise gets passed to the formatter for the injected
+; content.
+;
+; TODO: if possible also account for newline stripping and indentation.
+;       see: https://yaml-multiline.info
 
-;; ConfigMaps with *.json files
-; (document
-;   (block_node
-; 	(block_mapping
-; 	  (block_mapping_pair
-; 		key: (flow_node) @_data (#eq? @_data "data")
-; 		value: (block_node
-; 				 (block_mapping
-; 				   (block_mapping_pair
-; 					 key: (flow_node) @_json_file
-; 					 (#eq? @_json_file "config.json")
-; 					 value: (block_node
-; 							  (block_scalar) @injection.content
-; 							  (#set! injection.language "json")
-; 							  ; block_scalar must use offset which is relative to the '|'
-; 							  (#offset! @injection.content 1 -15 0 0)
-; 					 ))))))))
+; inject bash into multiline yaml
+(block_node
+  (block_mapping
+	(block_mapping_pair
+	  key: (flow_node) @key (#match? @key "\.sh$")
+	  value: (block_node
+				 (block_scalar) @injection.content)
+      (#offset! @injection.content 0 1 0 1000)
+	  (#set! injection.language "bash")
+	  )
+   )
+ )
 
-; (block_mapping_pair
-;   value: [
-;     (block_node (block_scalar) @injection.content)
-;     (flow_node (single_quote_scalar) @injection.content)
-;   ]
-;   (#set! injection.language "gotmpl")
-;   (#contains? @injection.content "{{")
-; )
+; inject json into multiline yaml
+(block_node
+  (block_mapping
+	(block_mapping_pair
+	  key: (flow_node) @key (#match? @key "\.json$")
+	  value: (block_node
+		       (block_scalar) @injection.content)
+      (#offset! @injection.content 0 1 0 1000)
+	  (#set! injection.language "json")
+	  )
+   )
+ )
 
-(block_mapping
-  (block_mapping_pair
-	key: (flow_node) @key (#match? @key "\\.yaml$")
-	value: (block_node (block_scalar) @injection.content
-             (#set! injection.language "yaml")
-             (#set! injection.include-children)
-           )
-	(#offset! @injection.content 1 -13 0 0)
-  )
-)
+; inject yaml into multiline yaml
+(block_node
+  (block_mapping
+	(block_mapping_pair
+	  key: (flow_node) @key (#match? @key "\.ya?ml$")
+	  value: (block_node
+		       (block_scalar) @injection.content)
+      (#offset! @injection.content 0 1 0 1000)
+	  (#set! injection.language "yaml")
+	  )
+   )
+ )
+
+; inject helm into multiline yaml when '{{ whatever }}' is found
+(block_node
+  (block_mapping
+	(block_mapping_pair
+	  key: (flow_node)
+	  value: (block_node
+		       (block_scalar) @injection.content)
+	  (#match? @injection.content "\\{\\{.+\\}\\}")
+      (#offset! @injection.content 0 1 0 1000)
+	  (#set! injection.language "helm")
+	  )
+   )
+ )
+
