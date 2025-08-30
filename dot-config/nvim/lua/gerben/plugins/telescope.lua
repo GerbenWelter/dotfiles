@@ -21,7 +21,6 @@ return {
 					},
 				},
 				file_ignore_patterns = { "vendor" },
-				border = false,
 			},
 		})
 
