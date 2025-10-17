@@ -4,6 +4,8 @@ local formatters = {
 	-- markdown seems to use the formatter 'injected' additionally by default
 	-- although 'ConformInfo' doesn't show it
 	markdown = { "prettier" },
+	query = { "topiary" },
+	scheme = { "topiary" },
 	sh = { "shfmt" },
 	yaml = { "prettier", "injected" },
 }
@@ -50,6 +52,11 @@ return {
 				prepend_args = {
 					"--single-quote",
 				},
+			},
+			topiary = {
+				command = "topiary",
+				args = { "format", "-l", "tree_sitter_query" },
+				stdin = true,
 			},
 		},
 		-- Set up format-on-save
