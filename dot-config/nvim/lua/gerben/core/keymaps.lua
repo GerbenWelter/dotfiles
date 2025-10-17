@@ -16,6 +16,8 @@ end
 vim.keymap.set("n", "<S-F5>", ":lua toggle_columns()<CR>")
 vim.keymap.set("n", "<F17>", ":lua toggle_columns()<CR>")
 
+vim.keymap.set("n", "<F12>", ":TSPlaygroundToggle<CR>")
+
 vim.keymap.set("n", "<C-j>", ":BufferLineCyclePrev<CR>")
 vim.keymap.set("n", "<C-k>", ":BufferLineCycleNext<CR>")
 
