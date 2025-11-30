@@ -28,4 +28,18 @@ require("lazy").setup({
 	change_detection = {
 		notify = false,
 	},
+	performance = {
+		rtp = {
+			-- Stuff I don't use.
+			disabled_plugins = {
+				"gzip",
+				"netrwPlugin",
+				"rplugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
+	},
 })
