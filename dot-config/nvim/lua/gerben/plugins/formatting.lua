@@ -1,4 +1,5 @@
 local formatters = {
+	javascript = { "prettier" },
 	json = { "prettier" },
 	lua = { "stylua" },
 	-- markdown seems to use the formatter 'injected' additionally by default
