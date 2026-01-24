@@ -20,6 +20,21 @@ return {
 				used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" },
 			}
 
+			parser_config.cel = {
+				install_info = {
+					url = "~/src/tree-sitter-cel",
+					files = { "src/parser.c" },
+				},
+				filetype = "cel",
+			}
+
+			-- Associate .cel files with the cel filetype
+			vim.filetype.add({
+				extension = {
+					cel = "cel",
+				},
+			})
+
 			-- configure treesitter
 			treesitter.setup({ -- enable syntax highlighting
 				highlight = {
@@ -33,6 +48,7 @@ return {
 				-- ensure these language parsers are installed
 				ensure_installed = {
 					"bash",
+					"cel",
 					"comment",
 					"dockerfile",
 					"gitignore",
