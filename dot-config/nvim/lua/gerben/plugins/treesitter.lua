@@ -1,82 +1,49 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		event = { "BufReadPre", "BufNewFile" },
+		lazy = false,
 		build = ":TSUpdate",
-		dependencies = {
-			"windwp/nvim-ts-autotag",
-		},
+		branch = "main",
 		config = function()
-			-- import nvim-treesitter plugin
-			local treesitter = require("nvim-treesitter.configs")
-
-			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-			parser_config.gotmpl = {
-				install_info = {
-					url = "https://github.com/ngalaiko/tree-sitter-go-template",
-					files = { "src/parser.c" },
-				},
-				filetype = "gotmpl",
-				used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" },
+			local ensure_installed = {
+				"bash",
+				"comment",
+				"dockerfile",
+				"gitignore",
+				"go",
+				"gomod",
+				"gosum",
+				"gotmpl",
+				"gowork",
+				"json",
+				"lua",
+				"markdown",
+				"markdown_inline",
+				"python",
+				"sql",
+				"query",
+				"vim",
+				"yaml",
 			}
+			require("nvim-treesitter").install(ensure_installed)
 
-			parser_config.cel = {
-				install_info = {
-					url = "~/src/tree-sitter-cel",
-					files = { "src/parser.c" },
-				},
-				filetype = "cel",
-			}
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("tree-sitter-enable", { clear = true }),
+				callback = function(args)
+					local lang = vim.treesitter.language.get_lang(args.match)
+					if not lang then
+						return
+					end
 
-			-- Associate .cel files with the cel filetype
-			vim.filetype.add({
-				extension = {
-					cel = "cel",
-				},
-			})
+					if vim.treesitter.query.get(lang, "highlights") then
+						vim.treesitter.start(args.buf)
+					end
 
-			-- configure treesitter
-			treesitter.setup({ -- enable syntax highlighting
-				highlight = {
-					-- If enabled it will override the colorscheme
-					enable = true,
-				},
-				-- enable indentation
-				indent = { enable = true },
-				-- enable autotagging (w/ nvim-ts-autotag plugin)
-				autotag = { enable = true },
-				-- ensure these language parsers are installed
-				ensure_installed = {
-					"bash",
-					"cel",
-					"comment",
-					"dockerfile",
-					"gitignore",
-					"gosum",
-					"gotmpl",
-					"gowork",
-					"json",
-					"lua",
-					"markdown",
-					"markdown_inline",
-					"python",
-					"sql",
-					"query",
-					"vim",
-					"yaml",
-				},
-				-- auto install above language parsers
-				auto_install = true,
-				-- activate linter in query editor
-				query_linter = {
-					enable = false,
-					use_virtual_text = true,
-					lint_events = { "BufWrite", "CursorHold" },
-				},
+					if vim.treesitter.query.get(lang, "indents") then
+						vim.opt_local.indentexpr = 'v:lua.require("nvim-treesitter").indentexpr()'
+					end
+				end,
 			})
 		end,
-	},
-	{
-		"nvim-treesitter/playground",
 	},
 }
