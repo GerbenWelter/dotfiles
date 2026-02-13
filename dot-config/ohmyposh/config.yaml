@@ -1,5 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
-
+'$schema': https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+version: 4
+final_space: true
 secondary_prompt:
   template: '❯❯ '
   foreground: magenta
@@ -15,34 +17,34 @@ blocks:
   - type: prompt
     alignment: left
     segments:
-      - properties:
+      - type: path
+        style: plain
+        foreground: blue
+        properties:
           cache_duration: none
           style: full
         template: '{{ .Path }}'
-        foreground: blue
-        type: path
+      - type: git
         style: plain
-      - properties:
+        foreground: p:grey
+        properties:
           cache_duration: none
           fetch_status: true
         template: ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}<cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
-        foreground: p:grey
         background: transparent
-        type: git
+      - type: python
         style: plain
-      - properties:
+        foreground: cyan
+        properties:
           cache_duration: none
           display_mode: context
         template: " \ue235 {{ if .Venv }}{{ .Venv }}@{{ end }}{{ .Full }}"
-        foreground: cyan
-        type: python
+      - type: go
         style: plain
-      - properties:
+        foreground: cyan
+        properties:
           cache_duration: none
         template: " \u202dﳑ {{ .Full }} "
-        foreground: cyan
-        type: go
-        style: plain
     newline: true
   - type: rprompt
     overflow: hidden
@@ -58,20 +60,20 @@ blocks:
   - type: prompt
     alignment: left
     segments:
-      - type: command
+      - type: shell
         style: plain
         foreground: magenta
         properties:
-          shell: zsh
+          shell: bash
           command: awk -F\" '/name/ { gsub(/%/, "%%", $2); print $2 }' /run/.containerenv
           cache_duration: none
         template: '{{ if eq .HostName "toolbx" }}🧰{{ .Output }} {{ end }}'
-      - properties:
+      - type: text
+        style: plain
+        foreground: magenta
+        properties:
           cache_duration: none
         template: ❯
-        foreground: magenta
-        type: text
-        style: plain
     newline: true
 tooltips:
   - template: ﴱ {{ upper ((split "-" .Cluster)._1) }}
@@ -81,5 +83,3 @@ tooltips:
     tips:
       - kubectl
       - oc
-version: 3
-final_space: true
