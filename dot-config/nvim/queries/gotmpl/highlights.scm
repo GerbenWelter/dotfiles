@@ -1,8 +1,8 @@
 ; Identifiers
 
 [
-    (field)
-    (field_identifier)
+  (field)
+  (field_identifier)
 ] @property
 
 (variable) @variable
@@ -10,11 +10,14 @@
 ; Function calls
 
 (function_call
-  function: (identifier) @function)
+  function: (identifier) @function
+)
 
 (method_call
   method: (selector_expression
-    field: (field_identifier) @method))
+    field: (field_identifier) @function
+  )
+)
 
 ; Operators
 
@@ -23,8 +26,10 @@
 
 ; Builtin functions
 
-((identifier) @function.builtin
- (#match? @function.builtin "^(and|call|html|index|slice|js|len|not|or|print|printf|println|urlquery|eq|ne|lt|ge|gt|ge)$"))
+(
+  (identifier) @function.builtin
+  (#match? @function.builtin "^(and|call|html|index|slice|js|len|not|or|print|printf|println|urlquery|eq|ne|lt|ge|gt|ge)$")
+)
 
 ; Delimiters
 
@@ -40,20 +45,14 @@
 
 ; Keywords
 
-[
-    "else"
-    "else if"
-    "if"
-    "with"
-] @conditional
-
-[
-    "range"
-    "end"
-    "template"
-    "define"
-    "block"
-] @keyword
+"else" @keyword
+"if" @keyword
+"range" @keyword
+"with" @keyword
+"end" @keyword
+"template" @keyword
+"define" @keyword
+"block" @keyword
 
 ; Literals
 
@@ -72,11 +71,8 @@
 ] @number
 
 [
-    (true)
-    (false)
-] @boolean
-
-[
+  (true)
+  (false)
   (nil)
 ] @constant.builtin
 
