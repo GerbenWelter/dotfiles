@@ -34,7 +34,7 @@ blocks:
         background: transparent
       - type: python
         style: plain
-        foreground: cyan
+        foreground: '#ffd742'
         properties:
           cache_duration: none
           display_mode: context
