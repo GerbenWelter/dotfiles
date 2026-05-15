@@ -44,7 +44,7 @@ blocks:
         foreground: cyan
         properties:
           cache_duration: none
-        template: " \u202dﳑ {{ .Full }} "
+        template: " \u202d{{ .Full }} "
     newline: true
   - type: rprompt
     overflow: hidden
