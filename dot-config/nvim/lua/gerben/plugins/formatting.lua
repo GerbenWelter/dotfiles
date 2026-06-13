@@ -16,7 +16,7 @@ if os.getenv("NVIM_GO") then
 end
 
 if os.getenv("NVIM_PYTHON") then
-	formatters["python"] = { "isort", "black" }
+	formatters["python"] = { "ruff" }
 end
 
 if os.getenv("NVIM_RUST") then

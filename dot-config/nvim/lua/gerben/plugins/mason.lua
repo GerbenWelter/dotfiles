@@ -24,7 +24,7 @@ if os.getenv("NVIM_PYTHON") then
 	table.insert(ensure_installed, "jedi_language_server")
 	table.insert(tool_ensure_installed, "isort")
 	table.insert(tool_ensure_installed, "black")
-	table.insert(tool_ensure_installed, "pylint")
+	table.insert(tool_ensure_installed, "ruff")
 end
 
 if os.getenv("NVIM_HELM") then
