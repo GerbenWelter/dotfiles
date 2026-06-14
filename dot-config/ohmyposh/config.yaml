@@ -60,14 +60,10 @@ blocks:
   - type: prompt
     alignment: left
     segments:
-      - type: shell
+      - type: text
         style: plain
         foreground: magenta
-        properties:
-          shell: bash
-          command: awk -F\" '/name/ { gsub(/%/, "%%", $2); print $2 }' /run/.containerenv
-          cache_duration: none
-        template: '{{ if eq .HostName "toolbx" }}🧰{{ .Output }} {{ end }}'
+        template: '{{ if .Env.TBX_NAME }}🧰{{ .Env.TBX_NAME }} {{ end }}'
       - type: text
         style: plain
         foreground: magenta
