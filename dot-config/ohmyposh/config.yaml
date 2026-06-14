@@ -72,7 +72,7 @@ blocks:
         template: ❯
     newline: true
 tooltips:
-  - template: ﴱ {{ upper ((split "-" .Cluster)._1) }}
+  - template: 󱃾{{ upper ((split "-" .Cluster)._1) }}
     foreground: cyan
     type: kubectl
     style: plain
