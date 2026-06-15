@@ -62,3 +62,6 @@ vim.opt.showcmd = false
 vim.opt.indentkeys = "!^F,o,O,0#,0},0],<:>"
 
 vim.o.winborder = "rounded"
+
+-- Make mousescrolling usable
+vim.o.mousescroll = "ver:1,hor:6"

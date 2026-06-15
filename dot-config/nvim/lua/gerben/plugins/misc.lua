@@ -3,4 +3,5 @@ return {
 	"ntpeters/vim-better-whitespace",
 	"tpope/vim-repeat",
 	"towolf/vim-helm",
+	{ "pearofducks/ansible-vim", config = true },
 }
