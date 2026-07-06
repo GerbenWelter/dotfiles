@@ -4,7 +4,9 @@ local ensure_installed = {
 }
 
 local tool_ensure_installed = {
+	"dockerfmt",
 	"prettier",
+	"ruff",
 	"shellcheck",
 	"shfmt",
 	"stylua",

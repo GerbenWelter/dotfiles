@@ -1,4 +1,5 @@
 local formatters = {
+	dockerfile = { "dockerfmt" },
 	javascript = { "prettier" },
 	json = { "prettier" },
 	lua = { "stylua" },
