@@ -15,6 +15,7 @@ return {
 				"gosum",
 				"gotmpl",
 				"gowork",
+				"jq",
 				"json",
 				"lua",
 				"markdown",
