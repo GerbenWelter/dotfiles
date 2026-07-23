@@ -3,9 +3,7 @@ local formatters = {
 	javascript = { "prettier" },
 	json = { "prettier" },
 	lua = { "stylua" },
-	-- markdown seems to use the formatter 'injected' additionally by default
-	-- although 'ConformInfo' doesn't show it
-	markdown = { "prettier" },
+	markdown = { "prettier", "injected" },
 	query = { "topiary" },
 	scheme = { "topiary" },
 	sh = { "shfmt" },
