@@ -31,7 +31,9 @@ if os.getenv("NVIM_HELM") then
 end
 
 if os.getenv("NVIM_RUST") then
-	table.insert(ensure_installed, "rust_analyzer")
+	if not vim.fn.executable("rust-analyzer") then
+		table.insert(ensure_installed, "rust_analyzer")
+	end
 end
 
 return {

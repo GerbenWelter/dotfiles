@@ -83,6 +83,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- lua/lsp.lua (Main LSP setup file)
 -- Define global LSP settings using vim.lsp.config('*', ...)
 -- These apply to ALL language servers unless overridden.
+
 vim.lsp.config("*", {
 	capabilities = capabilities,
 	flags = {
@@ -92,5 +93,7 @@ vim.lsp.config("*", {
 	-- Example: Define common on_attach or capabilities here if desired
 })
 
--- Initialize lspconfig to add its configurations to the runtime path
-require("lspconfig")
+vim.lsp.enable("rust_analyzer")
+
+-- -- Initialize lspconfig to add its configurations to the runtime path
+-- require("lspconfig")
