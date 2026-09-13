@@ -11,6 +11,7 @@ local tool_ensure_installed = {
 	"shfmt",
 	"stylua",
 	"taplo",
+	"topiary",
 }
 
 if os.getenv("NVIM_GO") then
