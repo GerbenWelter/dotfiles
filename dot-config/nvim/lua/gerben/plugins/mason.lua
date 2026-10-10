@@ -12,6 +12,7 @@ local tool_ensure_installed = {
 	"stylua",
 	"taplo",
 	"topiary",
+	"tree-sitter-cli",
 }
 
 if os.getenv("NVIM_GO") then
